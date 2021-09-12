@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for DOMAIN
+
+[Service]
+Restart=on-failure
+User=ayako
+WorkingDirectory=/home/ayako/sites/DOMAIN
+EnvironmentFile=/home/ayako/sites/DOMAIN.env
+
+ExecStart=/home/ayako/sites/DOMAIN/virtualenv/bin/gunicorn --bind unix:/tmp/DOMAIN.socket superlists.wsgi:application
+
+[Install]
+Wantedby=multi-user.target
